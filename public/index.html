@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Basic Page Needs
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8" />
+        <title>Canvaid</title>
+        <meta name="description" content="asdsad" />
+        <meta name="author" content="" />
+
+        <!-- Mobile Specific Metas
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- FONT
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link
+            href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+            rel="stylesheet"
+            type="text/css"
+        />
+
+        <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="./css/normalize.css" />
+        <link rel="stylesheet" href="./css/skeleton.css" />
+        <link ref="stylesheet" href="./css/norm2.css" />
+
+        <!-- Favicon
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+        <!-- 
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
+        /> -->
+    </head>
+    <body>
+        <!-- <div><h4 style="text-align: center">Canvaid Extended</h4></div> -->
+        <div class="container" style="display: flex">
+            <image
+                src="./images/extensionLogo.png"
+                style="
+                    width: auto;
+                    object-fit: contain;
+                    max-width: 350px;
+                    margin: auto;
+                "
+            >
+            </image>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <label for="exampleEmailInput">Your Extension Token</label>
+                <input
+                    class="u-full-width"
+                    type="text"
+                    placeholder=""
+                    id="token-input"
+                />
+                <div>
+                    <p
+                        style="color: #e53e3e; font-weight: 600; display: none"
+                        id="error-token-msg"
+                    >
+                        Your token is invalid! Please make sure you have the
+                        correct token, or regenerate the token and try again.
+                    </p>
+                </div>
+            </div>
+            <div id="quiz-details">
+                <div class="row">
+                    <div class="six columns">
+                        <h6 style="margin-bottom: 0">
+                            <strong>Course ID</strong>
+                        </h6>
+                        <p id="course-id"></p>
+                    </div>
+                    <div class="six columns">
+                        <h6 style="margin-bottom: 0">
+                            <strong>Quiz ID</strong>
+                        </h6>
+                        <p id="quiz-id"></p>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                <div class="six columns">
+                    <h6 style="margin-bottom: 0"><strong>Score</strong></h6>
+                    <p>Lorem Ipsum</p>
+                </div>
+                <div class="six columns">
+                    <h6 style="margin-bottom: 0">
+                        <strong>Attempt Number</strong>
+                    </h6>
+                    <p>Lorem Ipsum</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <h6 style="margin-bottom: 0">
+                        <strong>Quiz Completion Time</strong>
+                    </h6>
+                    <p>Lorem Ipsum</p>
+                </div>
+                <div class="six columns">
+                    <h6 style="margin-bottom: 0">
+                        <strong>Number of Questions</strong>
+                    </h6>
+                    <p>Lorem Ipsum</p>
+                </div>
+            </div> -->
+                <div style="text-align: center">
+                    <button
+                        class="button button-primary"
+                        id="add-quiz-btn"
+                        style="background-color: #319795"
+                    >
+                        Add Quiz
+                    </button>
+                </div>
+                <div style="text-align: center">
+                    <button
+                        class="button button-primary"
+                        style="display: none"
+                        id="quiz-btn"
+                        style="background-color: #319795"
+                    >
+                        Go to Canvaid Quiz
+                    </button>
+                </div>
+            </div>
+            <div style="text-align: center">
+                <p
+                    style="color: #e53e3e; font-weight: 600; display: none"
+                    id="error-page-msg"
+                >
+                    You are not on the correct quiz page! Please make sure the
+                    page you are on displays the quiz questions as well as your
+                    selected answers and follows the URL format stated below.
+                </p>
+                <p
+                    style="color: #e53e3e; font-weight: 600; display: none"
+                    id="error-added-already-msg"
+                >
+                    You have already added this quiz attempt to Canvaid!
+                </p>
+                <p
+                    style="color: #e53e3e; font-weight: 600; display: none"
+                    id="error-parse-msg"
+                >
+                    There was an error parsing your quiz attempt! Please contact
+                    the developer at https://t.me/canvaidhelp if this error
+                    persists.
+                </p>
+                <p
+                    style="color: #38a169; font-weight: 600; display: none"
+                    id="success-add-msg"
+                >
+                    Your quiz has been successfully added! You can view it by
+                    clicking on the button above.
+                </p>
+                <p>
+                    The correct page URL where you can add a quiz should look
+                    like one of the below:<br />
+                    1. /courses/.../quizzes/...
+                    <br />
+                    2. /courses/.../quizzes/.../history?version=...
+                </p>
+            </div>
+        </div>
+    </body>
+    <script src="popup.js"></script>
+</html>
