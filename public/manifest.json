@@ -1,0 +1,19 @@
+{
+    "short_name": "Canvaid",
+    "name": "Canvaid Extension",
+    "description": "Canvaid enhances your Canvas experience by providing additional features such as test-redoing and answer collation!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Canvaid"
+    },
+    "permissions": [
+        "activeTab",
+        "storage",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://canvaid.com/*"
+    ]
+}

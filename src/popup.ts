@@ -41,7 +41,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         .executeScript({
             target: { tabId: tab.id || 0 },
             func: getDOM,
-            //        files: ['contentScript.js'],  // To call external file instead
         })
         .then(() => console.log("Injected a function!"));
 });
@@ -135,12 +134,12 @@ const errorParsingMsg = document.getElementById("error-parse-msg");
 
 const successAddMsg = document.getElementById("success-add-msg");
 
-submitBtn?.addEventListener("click", submit);
+const getTokenLink = document.getElementById("get-token-link");
 
 // load the users' Extension Token
 chrome.storage.local.get(["token"], function (items) {
     //  items = [ { "yourBody": "myBody" } ]
-    const token = items.token;
+    const token = items.token || "";
 
     tokenInput.value = token;
 
@@ -150,10 +149,6 @@ chrome.storage.local.get(["token"], function (items) {
     pageContent.extensionToken = extensionToken;
 });
 
-tokenInput?.addEventListener("keyup", (e) => {
-    const token = (e.target as HTMLInputElement).value;
-    setToken(token);
-});
 function setToken(token: string) {
     chrome.storage.local.set({ token }).then(() => {
         console.log("Value is set");
@@ -166,8 +161,11 @@ function submit() {
     console.log(pageContent);
 
     if (!submitBtn) return;
+    // set submit to loading
     submitBtn.setAttribute("disabled", "true");
     submitBtn.innerText = "Adding Quiz...";
+    submitBtn.style.opacity = "0.5";
+    submitBtn.style.cursor = "not-allowed";
 
     // Reset all the error messages
     errorTokenMsg!.style.display = "none";
@@ -247,5 +245,24 @@ function submit() {
             //         "You have already submitted this attempt!"
             //     );
             // }
+        })
+        .finally(() => {
+            submitBtn.style.opacity = "1";
+            submitBtn.style.cursor = "pointer";
         });
 }
+
+window.addEventListener("load", () => {
+    getTokenLink?.addEventListener("click", () => {
+        chrome.tabs.create({
+            url: "https://canvaid.com/extension",
+        });
+    });
+
+    tokenInput?.addEventListener("keyup", (e) => {
+        const token = (e.target as HTMLInputElement).value;
+        setToken(token);
+    });
+
+    submitBtn?.addEventListener("click", submit);
+});
